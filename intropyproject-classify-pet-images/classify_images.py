@@ -69,7 +69,7 @@ def classify_images(images_dir, results_dic, model):
     pet_labels = []
     pet_filenames = []
     for pet_filename in results_dic:
-      classifier_labels.append((classifier(f'{images_dir}{pet_filename}', model)).lower().strip())
+      classifier_labels.append((classifier(images_dir+pet_filename, model)).lower().strip())
       pet_labels.append(results_dic[pet_filename][0])
       pet_filenames.append(pet_filename)
 

@@ -53,15 +53,15 @@ def get_pet_labels(image_dir):
         
         for word in word_list_pet_image:
           if word.isalpha():
-            pet_name += word + ''
+            pet_name += word + ' '
             
           pet_label = pet_name.strip()
+
+        if filenames[i] not in results_dic:
+          results_dic[filenames[i]] = [pet_label]
       
-      if filenames[i] not in results_dic:
-        results_dic[filenames[i]] = [pet_label]
-      
-      else:
-        print('**Warning: Key=', filenames[i], 'already exists in results_dic with value =', results_dic[filenames[i]])
+        else:
+          print('**Warning: Key=', filenames[i], 'already exists in results_dic with value =', results_dic[filenames[i]])
 
 
     # Replace None with the results_dic dictionary that you created with this

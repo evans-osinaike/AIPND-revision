@@ -37,6 +37,9 @@
 #       results_dic dictionary that is passed into the function is a mutable 
 #       data type so no return is needed.
 # 
+from os import read
+
+
 def adjust_results4_isadog(results_dic, dogfile):
     """
     Adjusts the results dictionary to determine if classifier correctly 
@@ -67,4 +70,35 @@ def adjust_results4_isadog(results_dic, dogfile):
     Returns:
            None - results_dic is mutable data type so no return needed.
     """           
-    None
+
+    pet_filenames = []
+    pet_labels = []
+    classifier_labels = []
+    pet_classifier_equality = []
+
+    for pet_filename in results_dic:
+      pet_filenames.append(pet_filename)
+      pet_labels.append(results_dic[pet_filename][0])
+      classifier_labels.append(results_dic[pet_filename][1])
+      pet_classifier_equality.append(results_dic[pet_filename][2])
+    
+    dog_name_dic = {}
+    with open(dogfile, 'r') as dog_names:
+      for line in dog_names:
+        dog_name = line.rstrip()
+
+        if dog_name in dog_name_dic:
+          print('Warning!: Duplicate dog name(s): ', dog_name)
+        else:
+          dog_name_dic[dog_name] = 1
+    
+    for i in range(len(pet_filenames)):
+      if pet_labels[i] in dog_name_dic:
+        results_dic[pet_filenames[i]].append(1)
+      else:
+        results_dic[pet_filenames[i]].append(0)
+      
+      if classifier_labels[i] in dog_name_dic:
+        results_dic[pet_filenames[i]].append(1)
+      else:
+        results_dic[pet_filenames[i]].append(0) 
