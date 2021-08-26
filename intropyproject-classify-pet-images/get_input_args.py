@@ -41,9 +41,9 @@ def get_input_args():
      parse_args() -data structure that stores the command line arguments object  
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dir', type = str, default= 'intropyproject-classify-pet-images/pet_images/', help= 'path to the folder of pet images')
+    parser.add_argument('--dir', type = str, default= 'pet_images/', help= 'path to the folder of pet images')
     parser.add_argument('--arch', type= str, default= 'vgg', help= 'CNN Model Architecture')
-    parser.add_argument('--dogfile', type= str, default= 'intropyproject-classify-pet-images/dognames.txt', help= 'file containing dog names')
+    parser.add_argument('--dogfile', type= str, default= 'dognames.txt', help= 'file containing dog names')
 
     # Replace None with parser.parse_args() parsed argument collection that 
     # you created with this function 
